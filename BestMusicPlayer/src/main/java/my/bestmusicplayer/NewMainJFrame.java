@@ -466,7 +466,7 @@ public class NewMainJFrame extends javax.swing.JFrame {
         createPlaylistName = createPlaylistNameField.getText();
         createPlaylistDescription = createPlaylistDescriptionTextArea.getText();
         
-        createPlaylistObj.create_playlist(createPlaylistName, createPlaylistDescription);
+//        createPlaylistObj.create_playlist(createPlaylistName, createPlaylistDescription);
         
         if(createPlaylistObj.create_playlist(createPlaylistName, createPlaylistDescription))
         {
