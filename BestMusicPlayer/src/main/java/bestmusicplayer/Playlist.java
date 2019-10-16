@@ -16,7 +16,7 @@ public class Playlist {
     public String owner;
     public String playListName;
     public String playListDescription;
-    public ArrayList<JsonPojo> songList;
+    public ArrayList<Playlist[]> songList;
     
     public Playlist(User user, String name, String description) 
     {

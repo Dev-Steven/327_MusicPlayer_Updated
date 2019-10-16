@@ -9,7 +9,8 @@ package bestmusicplayer;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -26,6 +27,7 @@ public class CreatePlaylist {
     JSONObject playlistObject = new JSONObject();
     JSONParser jsonParser = new JSONParser();
     JSONArray playlistList = new JSONArray();
+    Playlist[] playlists;
     
 
     Gson gson = new Gson();
@@ -38,7 +40,22 @@ public class CreatePlaylist {
         {
             System.out.print("playlist name isn't empty, check passed");
             
-
+            //  reading the file
+            try
+            {
+                BufferedReader br = new BufferedReader(  
+                new FileReader("playlists.json"));
+                System.out.print("\nReading the file...\n");
+                playlistList = gson.fromJson(br, JSONArray.class);
+                System.out.print("\nConverting json to java object...\n" + playlistList);
+                
+            }
+            catch(IOException e)
+            {
+                e.printStackTrace();
+            }
+            
+            
 
             Playlist playlist = new Playlist(user, playlistName, playlistDescription);
             //playlistDetails.put("Name: " + playlistName, "Description: " + playlistDescription);>>>>>>> f6334f54aea92e1929c3d66ceb9c00e5fd78b594:BestMusicPlayer/src/main/java/bestmusicplayer/CreatePlaylist.java
@@ -49,7 +66,9 @@ public class CreatePlaylist {
 
             //  making a JSON array
             
-            //  adding accountObject to array
+            //  adding playlist Object to array
+//            System.out.print("\nplaylists type: " + playlists.getClass().getSimpleName());
+//            playlistList.add(playlists);
             playlistList.add(playlist);
 
          

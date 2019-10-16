@@ -1,11 +1,22 @@
-<<<<<<< HEAD
-[{"playlist":{"Description":"is it workgin","Name":"yoo"}},{"playlist":{"Description":"hello?","Name":"lets see"}},{"playlist":{"Description":"???","Name":"It's working?!"}},{"playlist":{"Description":"yoooo","Name":"WORKING?!"}},{"playlist":{"Description":"sup","Name":"juan"}}]
-=======
 [
   {
     "owner": "",
     "playListName": "hello",
-    "playListDescription": "please save"
+    "playListDescription": "you there"
+  },
+  {
+    "owner": "",
+    "playListName": "yoo",
+    "playListDescription": "sup"
+  },
+  {
+    "owner": "",
+    "playListName": "working now?",
+    "playListDescription": "please..."
+  },
+  {
+    "owner": "",
+    "playListName": "Double checking...",
+    "playListDescription": "working right?!"
   }
 ]
->>>>>>> f6334f54aea92e1929c3d66ceb9c00e5fd78b594
