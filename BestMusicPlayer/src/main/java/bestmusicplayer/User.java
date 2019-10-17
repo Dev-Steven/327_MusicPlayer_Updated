@@ -5,6 +5,8 @@
  */
 package bestmusicplayer;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Juan
@@ -13,6 +15,7 @@ public class User {
     
     public String email;
     public String _password;
+    public ArrayList<User[]> allUsers;
     
     public User (String username, String password)
     {

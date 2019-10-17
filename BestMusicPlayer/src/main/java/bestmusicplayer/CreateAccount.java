@@ -8,7 +8,9 @@ package bestmusicplayer;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
+import java.io.BufferedReader;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import javax.swing.JOptionPane;
@@ -31,34 +33,47 @@ public class CreateAccount {
     Gson gson = new Gson();
     GsonBuilder builder = new GsonBuilder();
     
+    public void reader(String fileToRead){
+        try
+        {
+            BufferedReader br = new BufferedReader(  
+            new FileReader("accounts.json"));
+            System.out.print("\nReading the file...\n");
+            accountList = gson.fromJson(br, JSONArray.class);
+        }
+        catch(IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
+    
     public boolean creating_account(String email, String password, String confirmPassword) throws FileNotFoundException
     {    
         if(!email.isEmpty() && !password.isEmpty() && password.equals(confirmPassword) )
         {
             System.out.print("all fields pass check");
             
+            //  Read the file
+            
+            
+            
             User user = new User(email,password);
-
-            gson = builder.setPrettyPrinting().create();
-
+            
+            //  Adding newly created user to the array accountList
+            accountList.add(user);
+            
             //  writing to JSON file, 
             //  the true parameter makes it so the file is not overwritten
             try (FileWriter file = new FileWriter("accounts.json"))
             {
+                gson = builder.setPrettyPrinting().create();
                 //  might have to add check to see if file exists
-                //Adds to array
-                User[] userList = JsonArrayHandler.createUserArray("accounts.json");
-                for(User obj : userList) 
-                {
-                    gsonList.add(gson.toJson(obj));
-                }
-                accountList.add(gson.toJson(user, User.class));
-
-                System.out.print("writing to accounts.json");
-
-                gson.toJson(gsonList, file);
-                gson.toJson(userList, User[].class, file);
-                //gson.toJson(user, User.class, file);
+                
+                //  need to figure out how to add to already existing array
+                //  not create a new one every time
+                System.out.print("\nwriting to accounts.json");
+                gson.toJson(accountList, JSONArray.class, file);
+                //file.write(playlistList.toJSONString());
                 file.flush();   
             }
             catch(IOException e)
@@ -68,8 +83,42 @@ public class CreateAccount {
             
             accountCreated = true;
             return accountCreated;
-            
         }
+            
+            
+            //  Older stuff below this point
+
+//            gson = builder.setPrettyPrinting().create();
+//
+//            //  writing to JSON file, 
+//            //  the true parameter makes it so the file is not overwritten
+//            try (FileWriter file = new FileWriter("accounts.json"))
+//            {
+//                //  might have to add check to see if file exists
+//                //Adds to array
+//                User[] userList = JsonArrayHandler.createUserArray("accounts.json");
+//                for(User obj : userList) 
+//                {
+//                    gsonList.add(gson.toJson(obj));
+//                }
+//                accountList.add(gson.toJson(user, User.class));
+//
+//                System.out.print("writing to accounts.json");
+//
+//                gson.toJson(gsonList, file);
+//                gson.toJson(userList, User[].class, file);
+//                //gson.toJson(user, User.class, file);
+//                file.flush();   
+//            }
+//            catch(IOException e)
+//            {
+//              e.printStackTrace();
+//            }
+//            
+//            accountCreated = true;
+//            return accountCreated;
+//            
+//        }
         else
         {
             JOptionPane.showMessageDialog(null, "All fields required or passwords don't match!");

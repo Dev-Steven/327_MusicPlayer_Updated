@@ -47,8 +47,6 @@ public class CreatePlaylist {
                 new FileReader("playlists.json"));
                 System.out.print("\nReading the file...\n");
                 playlistList = gson.fromJson(br, JSONArray.class);
-                System.out.print("\nConverting json to java object...\n" + playlistList);
-                
             }
             catch(IOException e)
             {
