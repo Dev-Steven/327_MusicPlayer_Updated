@@ -27,11 +27,39 @@ public class CreatePlaylist {
     JSONObject playlistObject = new JSONObject();
     JSONParser jsonParser = new JSONParser();
     JSONArray playlistList = new JSONArray();
-    Playlist[] playlists;
     
 
     Gson gson = new Gson();
     GsonBuilder builder = new GsonBuilder();
+    
+    public void reader(String fileToRead, JSONArray theList){
+        try
+        {
+            BufferedReader br = new BufferedReader(  
+            new FileReader(fileToRead));
+            System.out.print("\nReading the file...\n");
+            theList = gson.fromJson(br, JSONArray.class);
+        }
+        catch(IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
+    
+    public void writer(String fileToWrite, JSONArray theList){
+    try (FileWriter file = new FileWriter(fileToWrite))
+        {
+            gson = builder.setPrettyPrinting().create();
+            System.out.print("\nwriting to playlists.json");
+            gson.toJson(theList, JSONArray.class, file);
+            //file.write(playlistList.toJSONString());
+            file.flush();   
+        }
+        catch(IOException e)
+        {
+          e.printStackTrace();
+        }
+    }
     
     public boolean create_playlist(User user, String playlistName, String playlistDescription)
 
@@ -41,6 +69,8 @@ public class CreatePlaylist {
             System.out.print("playlist name isn't empty, check passed");
             
             //  reading the file
+            //  When I try to call this function the file does not get read when starting a new session
+            //  reader("playlists.json", playlistList);
             try
             {
                 BufferedReader br = new BufferedReader(  
@@ -52,43 +82,15 @@ public class CreatePlaylist {
             {
                 e.printStackTrace();
             }
-            
-            
-
+           
+            //  Creating a playlist object
             Playlist playlist = new Playlist(user, playlistName, playlistDescription);
-            //playlistDetails.put("Name: " + playlistName, "Description: " + playlistDescription);>>>>>>> f6334f54aea92e1929c3d66ceb9c00e5fd78b594:BestMusicPlayer/src/main/java/bestmusicplayer/CreatePlaylist.java
-
-            //  adding the playlist details to the account object
             
-            //playlistObject.put("playlist", playlistDetails);
-
-            //  making a JSON array
-            
-            //  adding playlist Object to array
-//            System.out.print("\nplaylists type: " + playlists.getClass().getSimpleName());
-//            playlistList.add(playlists);
+            //  Adding object to the list
             playlistList.add(playlist);
 
-         
-
             //  writing to JSON file, 
-            //  the true parameter makes it so the file is not overwritten
-            try (FileWriter file = new FileWriter("playlists.json"))
-            {
-                gson = builder.setPrettyPrinting().create();
-                //  might have to add check to see if file exists
-                
-                //  need to figure out how to add to already existing array
-                //  not create a new one every time
-                System.out.print("\nwriting to playlists.json");
-                gson.toJson(playlistList, JSONArray.class, file);
-                //file.write(playlistList.toJSONString());
-                file.flush();   
-            }
-            catch(IOException e)
-            {
-              e.printStackTrace();
-            }
+            writer("playlists.json", playlistList);
             
             playlistCreated = true;
             return playlistCreated;

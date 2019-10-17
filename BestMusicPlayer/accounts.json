@@ -1,6 +1,14 @@
 [
   {
+    "email": "sup@sup.com",
+    "_password": "password"
+  },
+  {
     "email": "email",
+    "_password": "password"
+  },
+  {
+    "email": "schung@sup.com",
     "_password": "password"
   }
 ]

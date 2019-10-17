@@ -21,8 +21,6 @@ import org.json.simple.parser.JSONParser;
 
 public class CreateAccount {
     
-//  When I add the following line it prevents the program from running!
-//  NewMainJFrame MainObj = new NewMainJFrame();
     boolean accountCreated = false;
     JSONObject accountDetails = new JSONObject();
     JSONObject accountObject = new JSONObject();
@@ -33,18 +31,33 @@ public class CreateAccount {
     Gson gson = new Gson();
     GsonBuilder builder = new GsonBuilder();
     
-    public void reader(String fileToRead){
+    public void reader(String fileToRead, JSONArray theList){
         try
         {
             BufferedReader br = new BufferedReader(  
-            new FileReader("accounts.json"));
+            new FileReader(fileToRead));
             System.out.print("\nReading the file...\n");
-            accountList = gson.fromJson(br, JSONArray.class);
+            theList = gson.fromJson(br, JSONArray.class);
         }
         catch(IOException e)
         {
             e.printStackTrace();
         }
+    }
+    
+    public void writer(String fileToWrite, JSONArray theList){
+        try (FileWriter file = new FileWriter(fileToWrite))
+            {
+                gson = builder.setPrettyPrinting().create();
+                System.out.print("\nwriting to accounts.json");
+                gson.toJson(theList, JSONArray.class, file);
+                //file.write(playlistList.toJSONString());
+                file.flush();   
+            }
+            catch(IOException e)
+            {
+              e.printStackTrace();
+            }
     }
     
     public boolean creating_account(String email, String password, String confirmPassword) throws FileNotFoundException
@@ -54,71 +67,33 @@ public class CreateAccount {
             System.out.print("all fields pass check");
             
             //  Read the file
-            
-            
-            
-            User user = new User(email,password);
-            
-            //  Adding newly created user to the array accountList
-            accountList.add(user);
-            
-            //  writing to JSON file, 
-            //  the true parameter makes it so the file is not overwritten
-            try (FileWriter file = new FileWriter("accounts.json"))
+            //  When I try to call this function the file does not get read when starting a new session
+            //  reader("accounts.json", accountList);
+            try
             {
-                gson = builder.setPrettyPrinting().create();
-                //  might have to add check to see if file exists
-                
-                //  need to figure out how to add to already existing array
-                //  not create a new one every time
-                System.out.print("\nwriting to accounts.json");
-                gson.toJson(accountList, JSONArray.class, file);
-                //file.write(playlistList.toJSONString());
-                file.flush();   
+                BufferedReader br = new BufferedReader(  
+                new FileReader("accounts.json"));
+                System.out.print("\nReading the file...\n");
+                accountList = gson.fromJson(br, JSONArray.class);
             }
             catch(IOException e)
             {
-              e.printStackTrace();
+                e.printStackTrace();
             }
+            
+            //  Creating a user object
+            User user = new User(email,password);
+            
+            //  Adding object to list
+            accountList.add(user);
+            
+            //  writing to JSON file, 
+            writer("accounts.json",accountList);
             
             accountCreated = true;
             return accountCreated;
         }
-            
-            
-            //  Older stuff below this point
 
-//            gson = builder.setPrettyPrinting().create();
-//
-//            //  writing to JSON file, 
-//            //  the true parameter makes it so the file is not overwritten
-//            try (FileWriter file = new FileWriter("accounts.json"))
-//            {
-//                //  might have to add check to see if file exists
-//                //Adds to array
-//                User[] userList = JsonArrayHandler.createUserArray("accounts.json");
-//                for(User obj : userList) 
-//                {
-//                    gsonList.add(gson.toJson(obj));
-//                }
-//                accountList.add(gson.toJson(user, User.class));
-//
-//                System.out.print("writing to accounts.json");
-//
-//                gson.toJson(gsonList, file);
-//                gson.toJson(userList, User[].class, file);
-//                //gson.toJson(user, User.class, file);
-//                file.flush();   
-//            }
-//            catch(IOException e)
-//            {
-//              e.printStackTrace();
-//            }
-//            
-//            accountCreated = true;
-//            return accountCreated;
-//            
-//        }
         else
         {
             JOptionPane.showMessageDialog(null, "All fields required or passwords don't match!");
