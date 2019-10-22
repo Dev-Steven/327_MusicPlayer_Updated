@@ -8,6 +8,8 @@ package bestmusicplayer;
 import bestmusicplayer.Views.*;
 import bestmusicplayer.Controllers.*;
 import java.io.IOException;
+import java.util.ArrayList;
+import javax.swing.JComboBox;
 
 
 /**
@@ -21,6 +23,9 @@ public class NewMainJFrame extends javax.swing.JFrame {
     String password = user._password;
     String search = "";
     String songToAdd = "";
+    ArrayList<String> playLists = new ArrayList<String>();
+    ArrayList<String> songs = new ArrayList<String>();
+    
     
     String createEmail = "";
     String createPassword = "";
@@ -54,6 +59,7 @@ public class NewMainJFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jComboBox1 = new javax.swing.JComboBox<>();
         main = new javax.swing.JPanel();
         loginView = new javax.swing.JPanel();
         loginTitle = new javax.swing.JLabel();
@@ -66,7 +72,6 @@ public class NewMainJFrame extends javax.swing.JFrame {
         mainView = new javax.swing.JPanel();
         PlayButton = new javax.swing.JButton();
         StopButton = new javax.swing.JButton();
-        Progress = new javax.swing.JSlider();
         viewCreatePlaylistButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         songListPane = new javax.swing.JScrollPane();
@@ -93,6 +98,13 @@ public class NewMainJFrame extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         createPlaylistDescriptionTextArea = new javax.swing.JTextArea();
         createPlaylistButton = new javax.swing.JButton();
+        playListSelectable = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jComboBox2 = new javax.swing.JComboBox<>();
+        DeletePlaylist = new javax.swing.JButton();
+        EditPlaylist = new javax.swing.JButton();
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -152,7 +164,7 @@ public class NewMainJFrame extends javax.swing.JFrame {
                             .addComponent(loginTitle)
                             .addComponent(emailField, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(createPageButton, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addContainerGap(259, Short.MAX_VALUE))
+                .addContainerGap(261, Short.MAX_VALUE))
         );
         loginViewLayout.setVerticalGroup(
             loginViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -192,14 +204,6 @@ public class NewMainJFrame extends javax.swing.JFrame {
         StopButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 StopButtonMouseClicked(evt);
-            }
-        });
-
-        Progress.addInputMethodListener(new java.awt.event.InputMethodListener() {
-            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
-            }
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
-                ProgressCaretPositionChanged(evt);
             }
         });
 
@@ -246,7 +250,7 @@ public class NewMainJFrame extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(searchResult, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(14, Short.MAX_VALUE))
+                        .addContainerGap(24, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(addToPlaylist)
@@ -276,7 +280,7 @@ public class NewMainJFrame extends javax.swing.JFrame {
             .addGroup(mainViewLayout.createSequentialGroup()
                 .addGap(38, 38, 38)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
                 .addComponent(songListPane, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(14, 14, 14))
             .addGroup(mainViewLayout.createSequentialGroup()
@@ -293,10 +297,6 @@ public class NewMainJFrame extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel1)
                         .addGap(79, 79, 79))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainViewLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(Progress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(188, 188, 188))
         );
         mainViewLayout.setVerticalGroup(
             mainViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -305,16 +305,14 @@ public class NewMainJFrame extends javax.swing.JFrame {
                 .addGroup(mainViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(mainViewLayout.createSequentialGroup()
                         .addComponent(viewCreatePlaylistButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(3, 3, 3))
+                        .addGap(38, 38, 38))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainViewLayout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(songListPane)
-                        .addGap(12, 12, 12)))
-                .addComponent(Progress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(9, 9, 9)
+                        .addGap(47, 47, 47)))
                 .addGroup(mainViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(mainViewLayout.createSequentialGroup()
                         .addGap(15, 15, 15)
@@ -363,7 +361,7 @@ public class NewMainJFrame extends javax.swing.JFrame {
                     .addComponent(createConfirmPasswordField))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, createAccountViewLayout.createSequentialGroup()
-                .addContainerGap(305, Short.MAX_VALUE)
+                .addContainerGap(314, Short.MAX_VALUE)
                 .addGroup(createAccountViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, createAccountViewLayout.createSequentialGroup()
                         .addComponent(createTitle)
@@ -461,21 +459,75 @@ public class NewMainJFrame extends javax.swing.JFrame {
                 .addContainerGap(53, Short.MAX_VALUE))
         );
 
+        jLabel2.setText("Your playlists");
+
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox2ActionPerformed(evt);
+            }
+        });
+
+        DeletePlaylist.setText("Delete");
+        DeletePlaylist.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DeletePlaylistActionPerformed(evt);
+            }
+        });
+
+        EditPlaylist.setText("Edit");
+        EditPlaylist.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EditPlaylistActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout playListSelectableLayout = new javax.swing.GroupLayout(playListSelectable);
+        playListSelectable.setLayout(playListSelectableLayout);
+        playListSelectableLayout.setHorizontalGroup(
+            playListSelectableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(playListSelectableLayout.createSequentialGroup()
+                .addGap(57, 57, 57)
+                .addGroup(playListSelectableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(66, Short.MAX_VALUE))
+            .addGroup(playListSelectableLayout.createSequentialGroup()
+                .addComponent(DeletePlaylist)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(EditPlaylist, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        playListSelectableLayout.setVerticalGroup(
+            playListSelectableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(playListSelectableLayout.createSequentialGroup()
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
+                .addGroup(playListSelectableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(DeletePlaylist)
+                    .addComponent(EditPlaylist)))
+        );
+
         javax.swing.GroupLayout createPlaylistViewLayout = new javax.swing.GroupLayout(createPlaylistView);
         createPlaylistView.setLayout(createPlaylistViewLayout);
         createPlaylistViewLayout.setHorizontalGroup(
             createPlaylistViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, createPlaylistViewLayout.createSequentialGroup()
-                .addContainerGap(229, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(playListSelectable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(145, 145, 145)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(150, 150, 150))
+                .addContainerGap())
         );
         createPlaylistViewLayout.setVerticalGroup(
             createPlaylistViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(createPlaylistViewLayout.createSequentialGroup()
-                .addGap(48, 48, 48)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(createPlaylistViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(playListSelectable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(60, Short.MAX_VALUE))
         );
 
         main.add(createPlaylistView, "card5");
@@ -511,10 +563,6 @@ public class NewMainJFrame extends javax.swing.JFrame {
     private void StopButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_StopButtonMouseClicked
         player.stop();
     }//GEN-LAST:event_StopButtonMouseClicked
-
-    private void ProgressCaretPositionChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_ProgressCaretPositionChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ProgressCaretPositionChanged
 
     private void createPageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createPageButtonActionPerformed
         CreateAccountView.view_create(main, createAccountView);
@@ -566,7 +614,7 @@ public class NewMainJFrame extends javax.swing.JFrame {
         createPlaylistName = createPlaylistNameField.getText();
         createPlaylistDescription = createPlaylistDescriptionTextArea.getText();
 
-        if(playCon.createPlaylist(user, createPlaylistName, createPlaylistDescription))
+        if(playCon.createPlaylist(user, createPlaylistName, createPlaylistDescription, songs))
         {
             MainView.view_homePage(main, mainView);
         }
@@ -594,6 +642,25 @@ public class NewMainJFrame extends javax.swing.JFrame {
     private void addToPlaylistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addToPlaylistActionPerformed
         userCon.selectSong(songToAdd);
     }//GEN-LAST:event_addToPlaylistActionPerformed
+
+    private void DeletePlaylistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeletePlaylistActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_DeletePlaylistActionPerformed
+
+    private void EditPlaylistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditPlaylistActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_EditPlaylistActionPerformed
+
+    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+        //jComboBox2 = (JComboBox<String>)evt.getSource();
+        //String petName = (String)cb.getSelectedItem();
+        //updateLabel(petName);
+        //jComboBox2.addItem("Test");
+        //jComboBox2.addItem("2");
+        String selectedPlayList = (String) jComboBox2.getSelectedItem();
+        //jComboBox2.getSelectedItem();
+        System.out.println("Your seleted playlist is: " + selectedPlayList);
+    }//GEN-LAST:event_jComboBox2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -631,8 +698,9 @@ public class NewMainJFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton DeletePlaylist;
+    private javax.swing.JButton EditPlaylist;
     private javax.swing.JButton PlayButton;
-    private javax.swing.JSlider Progress;
     private javax.swing.JButton StopButton;
     private javax.swing.JButton addToPlaylist;
     private javax.swing.JPanel createAccountView;
@@ -654,7 +722,10 @@ public class NewMainJFrame extends javax.swing.JFrame {
     private javax.swing.JLabel createTitle;
     private javax.swing.JTextField emailField;
     private javax.swing.JLabel emailLabel;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
@@ -665,6 +736,7 @@ public class NewMainJFrame extends javax.swing.JFrame {
     private javax.swing.JPanel mainView;
     private javax.swing.JPasswordField passwordField;
     private javax.swing.JLabel passwordLabel;
+    private javax.swing.JPanel playListSelectable;
     private javax.swing.JTextField searchBar;
     private javax.swing.JButton searchButton;
     private javax.swing.JScrollPane searchResult;
