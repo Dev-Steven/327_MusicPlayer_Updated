@@ -5,6 +5,7 @@
  */
 package bestmusicplayer;
 
+import bestmusicplayer.Controllers.UserController;
 import bestmusicplayer.Views.*;
 import bestmusicplayer.Controllers.*;
 import java.io.IOException;
