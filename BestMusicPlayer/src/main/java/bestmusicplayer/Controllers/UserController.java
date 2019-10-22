@@ -5,6 +5,7 @@
  */
 package bestmusicplayer.Controllers;
 
+import bestmusicplayer.JsonPojo;
 import bestmusicplayer.User;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -15,6 +16,9 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -33,6 +37,11 @@ public class UserController {
     JSONArray accountList = new JSONArray();
     JsonArray gsonList = new JsonArray();
     
+    DefaultListModel listModel;
+    JList list;
+    String searchedSongTitle;
+    String searchedSongArtist;
+    String theSong;
     Gson gson = new Gson();
     GsonBuilder builder = new GsonBuilder();
     
@@ -96,7 +105,7 @@ public class UserController {
         }
     }
     
-    public boolean logging_in(String email, String password, javax.swing.JPanel main, javax.swing.JPanel test) 
+    public boolean logging_in(String email, String password, javax.swing.JPanel main, javax.swing.JPanel test, javax.swing.JScrollPane songListPane) 
     {
         System.out.println("Entered Email: " + email);
         System.out.println("Entered Password: " + password);
@@ -119,6 +128,29 @@ public class UserController {
             {
                 System.out.println("Niiiicee!");
                 success = true;
+
+                Gson gson2 = new Gson();
+                BufferedReader br = null;
+                try {
+    //                /Users/stevenchung/Documents/cecs_327/MusicPlayer/src/my/musicplayer/music.json
+                br = new BufferedReader(new FileReader("music.json"));
+                JsonPojo[] array = gson2.fromJson(br, JsonPojo[].class);
+
+    //            DefaultListModel listModel; 
+                listModel = new DefaultListModel();
+
+    //            ArrayList<String> songs = new ArrayList<String>();
+                for(JsonPojo jObj : array) {   
+                   listModel.addElement(jObj.song.title + " - " + jObj.artist.name);
+                }
+                list = new JList(listModel);
+                songListPane.setViewportView(list);
+                } 
+
+                catch (IOException e) {
+                    e.printStackTrace();
+                }
+                
                 return success;
             }
             
@@ -129,5 +161,48 @@ public class UserController {
             return success;
         }
         return success;
+    }
+    
+    public String searchSong(String search, javax.swing.JScrollPane searchResult)
+    {
+        Gson gson = new Gson();
+        BufferedReader br = null;
+        try {
+            br = new BufferedReader(new FileReader("music.json"));
+            JsonPojo[] array = gson.fromJson(br, JsonPojo[].class);
+
+            DefaultListModel listModel;
+            listModel = new DefaultListModel();
+
+            ArrayList<String> songs = new ArrayList<String>();
+            for(JsonPojo obj : array) {
+                if (search.equals(obj.song.title) || search.equals(obj.artist.name) || search.equals(obj.release.name))
+                {
+                    listModel.addElement(obj.song.title + " - " + obj.artist.name);
+//                    searchedSongTitle = obj.song.title.toString();
+//                    searchedSongArtist = obj.artist.name.toString();
+                    theSong = obj.song.title.toString() + " - " + obj.artist.name.toString();
+                    
+                }
+            }
+
+            JList list = new JList(listModel);
+//            searchedSong = listModel.toString();
+            searchResult.setViewportView(list);
+//            theSong = searchedSongTitle + " - " +  searchedSongArtist;
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        
+        return theSong;
+        
+    }
+    
+    public void selectSong(String theSong)
+    {
+//        String selectedSong = list.getSelectedValue().toString();
+        System.out.println("Selected Song: " + theSong);
+        
     }
 }
