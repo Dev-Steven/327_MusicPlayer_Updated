@@ -22,6 +22,7 @@ public class NewMainJFrame extends javax.swing.JFrame {
     String email = user.email;
     String password = user._password;
     String search = "";
+    String songToAdd = "";
     
     String createEmail = "";
     String createPassword = "";
@@ -29,6 +30,7 @@ public class NewMainJFrame extends javax.swing.JFrame {
     
     String createPlaylistName = "";
     String createPlaylistDescription = "";
+   
     
     Mp3 player;    
     String songFile;
@@ -69,6 +71,13 @@ public class NewMainJFrame extends javax.swing.JFrame {
         StopButton = new javax.swing.JButton();
         Progress = new javax.swing.JSlider();
         viewCreatePlaylistButton = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        songListPane = new javax.swing.JScrollPane();
+        jPanel2 = new javax.swing.JPanel();
+        searchResult = new javax.swing.JScrollPane();
+        searchBar = new javax.swing.JTextField();
+        searchButton = new javax.swing.JButton();
+        addToPlaylist = new javax.swing.JButton();
         createAccountView = new javax.swing.JPanel();
         createTitle = new javax.swing.JLabel();
         createEmailLabel = new javax.swing.JLabel();
@@ -146,7 +155,7 @@ public class NewMainJFrame extends javax.swing.JFrame {
                             .addComponent(loginTitle)
                             .addComponent(emailField, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(createPageButton, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addContainerGap(201, Short.MAX_VALUE))
+                .addContainerGap(259, Short.MAX_VALUE))
         );
         loginViewLayout.setVerticalGroup(
             loginViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -165,7 +174,7 @@ public class NewMainJFrame extends javax.swing.JFrame {
                 .addComponent(loginButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(createPageButton)
-                .addContainerGap(75, Short.MAX_VALUE))
+                .addContainerGap(82, Short.MAX_VALUE))
         );
 
         main.add(loginView, "card2");
@@ -204,40 +213,117 @@ public class NewMainJFrame extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setText("All Songs");
+
+        searchBar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchBarActionPerformed(evt);
+            }
+        });
+
+        searchButton.setText("Search");
+        searchButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchButtonActionPerformed(evt);
+            }
+        });
+
+        addToPlaylist.setText("Add to Playlist");
+        addToPlaylist.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addToPlaylistActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(searchBar, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addComponent(searchButton)))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(searchResult, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(14, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(addToPlaylist)
+                        .addGap(51, 51, 51))))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addComponent(searchBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(searchButton))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(searchResult, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(addToPlaylist)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout mainViewLayout = new javax.swing.GroupLayout(mainView);
         mainView.setLayout(mainViewLayout);
         mainViewLayout.setHorizontalGroup(
             mainViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(mainViewLayout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
+                .addComponent(songListPane, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(14, 14, 14))
+            .addGroup(mainViewLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(viewCreatePlaylistButton)
+                .addGroup(mainViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(mainViewLayout.createSequentialGroup()
+                        .addGap(63, 63, 63)
+                        .addComponent(PlayButton, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(40, 40, 40)
+                        .addComponent(StopButton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(mainViewLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel1)
+                        .addGap(79, 79, 79))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainViewLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(Progress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(188, 188, 188))
-            .addGroup(mainViewLayout.createSequentialGroup()
-                .addGroup(mainViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(mainViewLayout.createSequentialGroup()
-                        .addGap(199, 199, 199)
-                        .addComponent(PlayButton, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(40, 40, 40)
-                        .addComponent(StopButton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(mainViewLayout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addComponent(viewCreatePlaylistButton)))
-                .addContainerGap(165, Short.MAX_VALUE))
         );
         mainViewLayout.setVerticalGroup(
             mainViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainViewLayout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addComponent(viewCreatePlaylistButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 169, Short.MAX_VALUE)
+            .addGroup(mainViewLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(mainViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(mainViewLayout.createSequentialGroup()
+                        .addComponent(viewCreatePlaylistButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(3, 3, 3))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainViewLayout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(songListPane)
+                        .addGap(12, 12, 12)))
                 .addComponent(Progress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(9, 9, 9)
                 .addGroup(mainViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(mainViewLayout.createSequentialGroup()
                         .addGap(15, 15, 15)
                         .addComponent(StopButton, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE))
                     .addComponent(PlayButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                .addGap(18, 18, 18))
         );
 
         main.add(mainView, "card3");
@@ -280,7 +366,7 @@ public class NewMainJFrame extends javax.swing.JFrame {
                     .addComponent(createConfirmPasswordField))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, createAccountViewLayout.createSequentialGroup()
-                .addContainerGap(247, Short.MAX_VALUE)
+                .addContainerGap(305, Short.MAX_VALUE)
                 .addGroup(createAccountViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, createAccountViewLayout.createSequentialGroup()
                         .addComponent(createTitle)
@@ -308,7 +394,7 @@ public class NewMainJFrame extends javax.swing.JFrame {
                     .addComponent(createConfirmPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(createButton)
-                .addContainerGap(87, Short.MAX_VALUE))
+                .addContainerGap(101, Short.MAX_VALUE))
         );
 
         main.add(createAccountView, "card4");
@@ -383,7 +469,7 @@ public class NewMainJFrame extends javax.swing.JFrame {
         createPlaylistViewLayout.setHorizontalGroup(
             createPlaylistViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, createPlaylistViewLayout.createSequentialGroup()
-                .addContainerGap(171, Short.MAX_VALUE)
+                .addContainerGap(229, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(150, 150, 150))
         );
@@ -392,7 +478,7 @@ public class NewMainJFrame extends javax.swing.JFrame {
             .addGroup(createPlaylistViewLayout.createSequentialGroup()
                 .addGap(48, 48, 48)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         main.add(createPlaylistView, "card5");
@@ -414,7 +500,7 @@ public class NewMainJFrame extends javax.swing.JFrame {
         email = emailField.getText();
         password = String.valueOf(passwordField.getPassword());
 
-        if(userCon.logging_in(email, password, main, mainView))
+        if(userCon.logging_in(email, password, main, mainView, songListPane))
         {
             user = new User(email, password);
         }
@@ -451,7 +537,7 @@ public class NewMainJFrame extends javax.swing.JFrame {
             if(userCon.createAccount(createEmail, createPassword, createConfirmPassword)) 
             {
                 System.out.print("logging in");
-                userCon.logging_in(createEmail, createPassword, main, mainView);
+                userCon.logging_in(createEmail, createPassword, main, mainView, songListPane);
                 user = new User (createEmail, createPassword);
             }
             else
@@ -495,6 +581,20 @@ public class NewMainJFrame extends javax.swing.JFrame {
         System.out.println("Hello");
     }//GEN-LAST:event_PlayButtonActionPerformed
 
+    private void searchBarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchBarActionPerformed
+
+    private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
+        search = searchBar.getText();
+        
+        songToAdd = userCon.searchSong(search, searchResult);
+    }//GEN-LAST:event_searchButtonActionPerformed
+
+    private void addToPlaylistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addToPlaylistActionPerformed
+        userCon.selectSong(songToAdd);
+    }//GEN-LAST:event_addToPlaylistActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -534,6 +634,7 @@ public class NewMainJFrame extends javax.swing.JFrame {
     private javax.swing.JButton PlayButton;
     private javax.swing.JSlider Progress;
     private javax.swing.JButton StopButton;
+    private javax.swing.JButton addToPlaylist;
     private javax.swing.JPanel createAccountView;
     private javax.swing.JButton createButton;
     private javax.swing.JLabel createConfirmLabel;
@@ -553,7 +654,9 @@ public class NewMainJFrame extends javax.swing.JFrame {
     private javax.swing.JLabel createTitle;
     private javax.swing.JTextField emailField;
     private javax.swing.JLabel emailLabel;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton loginButton;
     private javax.swing.JLabel loginTitle;
@@ -562,6 +665,10 @@ public class NewMainJFrame extends javax.swing.JFrame {
     private javax.swing.JPanel mainView;
     private javax.swing.JPasswordField passwordField;
     private javax.swing.JLabel passwordLabel;
+    private javax.swing.JTextField searchBar;
+    private javax.swing.JButton searchButton;
+    private javax.swing.JScrollPane searchResult;
+    private javax.swing.JScrollPane songListPane;
     private javax.swing.JButton viewCreatePlaylistButton;
     // End of variables declaration//GEN-END:variables
 }

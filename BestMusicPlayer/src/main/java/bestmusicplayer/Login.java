@@ -10,6 +10,9 @@ import java.io.FileReader;
 import javax.swing.JOptionPane;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
+import javax.swing.JList;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.*; 
@@ -36,10 +39,12 @@ public class Login {
     GsonBuilder builder = new GsonBuilder();
     
     Object obj = new Object();
+    DefaultListModel listModel;
+    JList list;
     
     boolean success = false;
     
-    public void logging_in(String email, String password, javax.swing.JPanel main, javax.swing.JPanel test) 
+    public void logging_in(String email, String password, javax.swing.JPanel main, javax.swing.JPanel test, javax.swing.JScrollPane songListPane) 
     {
         
 //        System.out.println("Entered Email: " + email);
@@ -78,6 +83,28 @@ public class Login {
                 main.add(test);
                 main.repaint();
                 main.revalidate();
+                
+                Gson gson2 = new Gson();
+                BufferedReader br = null;
+                try {
+    //                /Users/stevenchung/Documents/cecs_327/MusicPlayer/src/my/musicplayer/music.json
+                br = new BufferedReader(new FileReader("music.json"));
+                JsonPojo[] array = gson2.fromJson(br, JsonPojo[].class);
+
+    //            DefaultListModel listModel; 
+                listModel = new DefaultListModel();
+
+    //            ArrayList<String> songs = new ArrayList<String>();
+                for(JsonPojo jObj : array) {   
+                   listModel.addElement(jObj.song.title + " - " + jObj.artist.name);
+                }
+                list = new JList(listModel);
+                songListPane.setViewportView(list);
+                } 
+
+                catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
             
         }
