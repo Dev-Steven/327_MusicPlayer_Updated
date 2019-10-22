@@ -37,8 +37,9 @@ public class UserController {
     
     DefaultListModel listModel;
     JList list;
-    String searchedSong;
-    
+    String searchedSongTitle;
+    String searchedSongArtist;
+    String theSong;
     Gson gson = new Gson();
     GsonBuilder builder = new GsonBuilder();
     
@@ -181,19 +182,23 @@ public class UserController {
                 if (search.equals(obj.song.title) || search.equals(obj.artist.name) || search.equals(obj.release.name))
                 {
                     listModel.addElement(obj.song.title + " - " + obj.artist.name);
+//                    searchedSongTitle = obj.song.title.toString();
+//                    searchedSongArtist = obj.artist.name.toString();
+                    theSong = obj.song.title.toString() + " - " + obj.artist.name.toString();
+                    
                 }
             }
 
             JList list = new JList(listModel);
-            searchedSong = listModel.toString();
+//            searchedSong = listModel.toString();
             searchResult.setViewportView(list);
-              
+//            theSong = searchedSongTitle + " - " +  searchedSongArtist;
         }
         catch (IOException e) {
             e.printStackTrace();
         }
         
-        return searchedSong;
+        return theSong;
         
     }
     
@@ -201,5 +206,6 @@ public class UserController {
     {
 //        String selectedSong = list.getSelectedValue().toString();
         System.out.println("Selected Song: " + theSong);
+        
     }
 }

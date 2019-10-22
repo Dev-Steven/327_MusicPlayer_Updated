@@ -8,6 +8,7 @@ package bestmusicplayer;
 import bestmusicplayer.Views.*;
 import bestmusicplayer.Controllers.*;
 import java.io.IOException;
+import java.util.ArrayList;
 
 
 /**
@@ -21,6 +22,8 @@ public class NewMainJFrame extends javax.swing.JFrame {
     String password = user._password;
     String search = "";
     String songToAdd = "";
+    ArrayList<String> songs = new ArrayList<String>();
+    
     
     String createEmail = "";
     String createPassword = "";
@@ -566,7 +569,7 @@ public class NewMainJFrame extends javax.swing.JFrame {
         createPlaylistName = createPlaylistNameField.getText();
         createPlaylistDescription = createPlaylistDescriptionTextArea.getText();
 
-        if(playCon.createPlaylist(user, createPlaylistName, createPlaylistDescription))
+        if(playCon.createPlaylist(user, createPlaylistName, createPlaylistDescription, songs))
         {
             MainView.view_homePage(main, mainView);
         }

@@ -61,7 +61,7 @@ public class CreatePlaylist {
         }
     }
     
-    public boolean create_playlist(User user, String playlistName, String playlistDescription)
+    public boolean create_playlist(User user, String playlistName, String playlistDescription, ArrayList<String> songs)
 
     {
         if(!playlistName.isEmpty())
@@ -84,7 +84,7 @@ public class CreatePlaylist {
             }
            
             //  Creating a playlist object
-            Playlist playlist = new Playlist(user, playlistName, playlistDescription);
+            Playlist playlist = new Playlist(user, playlistName, playlistDescription, songs);
             
             //  Adding object to the list
             playlistList.add(playlist);

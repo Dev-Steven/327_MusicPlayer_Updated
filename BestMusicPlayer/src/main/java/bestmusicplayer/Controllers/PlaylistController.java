@@ -13,6 +13,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -64,7 +65,7 @@ public class PlaylistController {
         }
     }
     
-    public boolean createPlaylist(User user, String playlistName, String playlistDescription)
+    public boolean createPlaylist(User user, String playlistName, String playlistDescription, ArrayList<String> songs)
 
     {
         if(!playlistName.isEmpty())
@@ -73,7 +74,7 @@ public class PlaylistController {
             
             reader("playlists.json");
 
-            Playlist playlist = new Playlist(user, playlistName, playlistDescription);
+            Playlist playlist = new Playlist(user, playlistName, playlistDescription, songs);
 
             playlistList.add(playlist);
  

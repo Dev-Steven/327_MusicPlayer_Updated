@@ -16,21 +16,27 @@ public class Playlist {
     public String owner;
     public String playListName;
     public String playListDescription;
-    public ArrayList<Playlist[]> songList;
+    public ArrayList<String> songList;
     
-    public Playlist(User user, String name, String description) 
+    public Playlist(User user, String name, String description, ArrayList<String> songs) 
     {
         this.owner = user.email;
         this.playListName = name;
         this.playListDescription = description;
+        this.songList = songs;
     }
     
     public void deletePlaylist() {owner = null;}
     
-    public void addSong(JsonPojo song) 
+    public void addSong(String song) 
     {
-    //  To do
+        songList.add(song);
     }
+    
+//    public void addSong(JsonPojo song) 
+//    {
+//    //  To do
+//    }
     
     public void removeSong(JsonPojo song) 
     {
