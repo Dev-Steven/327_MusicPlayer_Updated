@@ -5,10 +5,8 @@
  */
 package bestmusicplayer;
 
-import bestmusicplayer.Views.CreateAccountView;
-import bestmusicplayer.Views.MainView;
-import bestmusicplayer.Views.PlayListView;
-//import bestmusicplayer.UserController;
+import bestmusicplayer.Views.*;
+import bestmusicplayer.Controllers.*;
 import java.io.IOException;
 
 
@@ -34,9 +32,8 @@ public class NewMainJFrame extends javax.swing.JFrame {
     String songFile;
     
     UserController userCon = new UserController();
-   
-    CreatePlaylist createPlaylistObj = new CreatePlaylist();
-    
+    PlaylistController playCon = new PlaylistController();
+
     /**
      * Creates new form NewMainJFrame
      */
@@ -411,6 +408,7 @@ public class NewMainJFrame extends javax.swing.JFrame {
 
         if(userCon.logging_in(email, password, main, mainView))
         {
+            MainView.view_homePage(main, mainView);
             user = new User(email, password);
         }
     }//GEN-LAST:event_loginButtonActionPerformed
@@ -447,6 +445,7 @@ public class NewMainJFrame extends javax.swing.JFrame {
             {
                 System.out.print("logging in");
                 userCon.logging_in(createEmail, createPassword, main, mainView);
+                MainView.view_homePage(main, mainView);
                 user = new User (createEmail, createPassword);
             }
             else
@@ -475,7 +474,7 @@ public class NewMainJFrame extends javax.swing.JFrame {
         createPlaylistName = createPlaylistNameField.getText();
         createPlaylistDescription = createPlaylistDescriptionTextArea.getText();
 
-        if(createPlaylistObj.create_playlist(user, createPlaylistName, createPlaylistDescription))
+        if(playCon.createPlaylist(user, createPlaylistName, createPlaylistDescription))
         {
             MainView.view_homePage(main, mainView);
         }
