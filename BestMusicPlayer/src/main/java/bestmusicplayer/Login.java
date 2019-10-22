@@ -42,15 +42,15 @@ public class Login {
     public void logging_in(String email, String password, javax.swing.JPanel main, javax.swing.JPanel test) 
     {
         
-        System.out.println("Entered Email: " + email);
-        System.out.println("Entered Password: " + password);
+//        System.out.println("Entered Email: " + email);
+//        System.out.println("Entered Password: " + password);
         
         //  reading file
         try
             {
                 BufferedReader br = new BufferedReader(  
                 new FileReader("accounts.json"));
-                System.out.print("\nReading the file...\n");
+//                System.out.print("\nReading the file...\n");
                 accountList = gson.fromJson(br, JSONArray.class);
             }
             catch(IOException e)
@@ -65,13 +65,13 @@ public class Login {
             JSONObject object = new Gson().fromJson(new Gson().toJson(((LinkedTreeMap<String, Object>) account)), JSONObject.class);
             
             String getEmail = (String)object.get("email");
-            System.out.println("Email: " + getEmail);
+//            System.out.println("Email: " + getEmail);
             String getPassword = (String)object.get("_password");
-            System.out.println("Password: " + getPassword);
-            
+//            System.out.println("Password: " + getPassword);
+//            
             if(email.equals(getEmail) && password.equals(getPassword))
             {
-                System.out.println("Niiiicee!");
+//                System.out.println("Niiiicee!");
                 success = true;
                 
                 main.removeAll();

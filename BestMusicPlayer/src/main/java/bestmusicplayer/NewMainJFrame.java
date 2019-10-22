@@ -174,6 +174,11 @@ public class NewMainJFrame extends javax.swing.JFrame {
                 PlayButtonMouseClicked(evt);
             }
         });
+        PlayButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PlayButtonActionPerformed(evt);
+            }
+        });
 
         StopButton.setText("Stop");
         StopButton.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -183,10 +188,10 @@ public class NewMainJFrame extends javax.swing.JFrame {
         });
 
         Progress.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+            }
             public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
                 ProgressCaretPositionChanged(evt);
-            }
-            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
             }
         });
 
@@ -478,6 +483,11 @@ public class NewMainJFrame extends javax.swing.JFrame {
             System.out.print("Could not create playlist");
         }
     }//GEN-LAST:event_createPlaylistButtonActionPerformed
+
+    private void PlayButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PlayButtonActionPerformed
+        // TODO add your handling code here:
+        System.out.println("Hello");
+    }//GEN-LAST:event_PlayButtonActionPerformed
 
     /**
      * @param args the command line arguments
