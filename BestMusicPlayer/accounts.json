@@ -10,5 +10,25 @@
   {
     "email": "schung@sup.com",
     "_password": "password"
+  },
+  {
+    "email": "juan",
+    "_password": "asdf"
+  },
+  {
+    "email": "asdf",
+    "_password": "123"
+  },
+  {
+    "email": "1234",
+    "_password": "1234"
+  },
+  {
+    "email": "test",
+    "_password": "booyah"
+  },
+  {
+    "email": "juan",
+    "_password": "asdf"
   }
 ]
