@@ -8,6 +8,7 @@ package bestmusicplayer;
 import bestmusicplayer.Views.CreateAccountView;
 import bestmusicplayer.Views.MainView;
 import bestmusicplayer.Views.PlayListView;
+//import bestmusicplayer.UserController;
 import java.io.IOException;
 
 
@@ -31,8 +32,9 @@ public class NewMainJFrame extends javax.swing.JFrame {
     
     Mp3 player;    
     String songFile;
-    Login loginObj = new Login();
-    CreateAccount createAccountObj = new CreateAccount();
+    
+    UserController userCon = new UserController();
+   
     CreatePlaylist createPlaylistObj = new CreatePlaylist();
     
     /**
@@ -411,8 +413,11 @@ public class NewMainJFrame extends javax.swing.JFrame {
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
         email = emailField.getText();
         password = String.valueOf(passwordField.getPassword());
-        
-        loginObj.logging_in(email, password, main, mainView);
+
+        if(userCon.logging_in(email, password, main, mainView))
+        {
+            user = new User(email, password);
+        }
     }//GEN-LAST:event_loginButtonActionPerformed
 
     private void PlayButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PlayButtonMouseClicked
@@ -443,10 +448,11 @@ public class NewMainJFrame extends javax.swing.JFrame {
         
         try
         {
-            if(createAccountObj.creating_account(createEmail, createPassword, createConfirmPassword)) 
+            if(userCon.createAccount(createEmail, createPassword, createConfirmPassword)) 
             {
                 System.out.print("logging in");
-                loginObj.logging_in(createEmail, createPassword, main, mainView);
+                userCon.logging_in(createEmail, createPassword, main, mainView);
+                user = new User (createEmail, createPassword);
             }
             else
             {
