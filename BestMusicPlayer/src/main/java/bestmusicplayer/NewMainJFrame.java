@@ -113,7 +113,7 @@ public class NewMainJFrame extends javax.swing.JFrame {
 
         loginView.setBackground(new java.awt.Color(51, 255, 102));
 
-        loginTitle.setText("Spotify Login");
+        loginTitle.setText("Best Music Player");
 
         emailLabel.setText("Email:");
 
@@ -601,9 +601,14 @@ public class NewMainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_createButtonActionPerformed
 
     private void viewCreatePlaylistButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewCreatePlaylistButtonActionPerformed
-        //  This button will take user to create a playlist page when clicked
-      
-            PlayListView.view_createPlaylist(main, createPlaylistView);
+        //  This button will take user to create a playlist page when clicked 
+        jComboBox2.removeAllItems();
+        playLists = playCon.getPlaylist(user);
+        for(int i = 0; i < playLists.size(); i++)
+        {
+            jComboBox2.addItem(playLists.get(i));
+        }
+        PlayListView.view_createPlaylist(main, createPlaylistView);
             
     }//GEN-LAST:event_viewCreatePlaylistButtonActionPerformed
 
@@ -656,8 +661,6 @@ public class NewMainJFrame extends javax.swing.JFrame {
         //jComboBox2 = (JComboBox<String>)evt.getSource();
         //String petName = (String)cb.getSelectedItem();
         //updateLabel(petName);
-        //jComboBox2.addItem("Test");
-        //jComboBox2.addItem("2");
         String selectedPlayList = (String) jComboBox2.getSelectedItem();
         //jComboBox2.getSelectedItem();
         System.out.println("Your seleted playlist is: " + selectedPlayList);

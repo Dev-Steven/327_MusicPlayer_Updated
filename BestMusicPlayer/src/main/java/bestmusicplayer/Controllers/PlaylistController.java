@@ -31,7 +31,7 @@ public class PlaylistController {
     JSONObject playlistObject = new JSONObject();
     JSONParser jsonParser = new JSONParser();
     JSONArray playlistList = new JSONArray();
-    
+    ArrayList<String> playLists = new ArrayList<>();
 
     Gson gson = new Gson();
     GsonBuilder builder = new GsonBuilder();
@@ -66,7 +66,6 @@ public class PlaylistController {
     }
     
     public boolean createPlaylist(User user, String playlistName, String playlistDescription, ArrayList<String> songs)
-
     {
         if(!playlistName.isEmpty())
         {
@@ -90,5 +89,17 @@ public class PlaylistController {
             return playlistCreated;
         }
     }
+    
+    public ArrayList<String> getPlaylist(User user)
+    {   
+        reader("playlists.json");
+        playLists.addAll(playlistList);
+        for(int i = 0; i < playLists.size(); i++)
+        {
+            System.out.println(playLists.get(i));
+        }
+        return playLists;
+    }
+    
     
 }

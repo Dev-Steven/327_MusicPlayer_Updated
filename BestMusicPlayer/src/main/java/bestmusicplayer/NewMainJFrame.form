@@ -116,7 +116,7 @@
           <SubComponents>
             <Component class="javax.swing.JLabel" name="loginTitle">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Spotify Login"/>
+                <Property name="text" type="java.lang.String" value="Best Music Player"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="emailLabel">
