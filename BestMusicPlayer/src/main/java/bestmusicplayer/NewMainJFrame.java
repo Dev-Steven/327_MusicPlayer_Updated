@@ -606,6 +606,8 @@ public class NewMainJFrame extends javax.swing.JFrame {
     private void viewCreatePlaylistButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewCreatePlaylistButtonActionPerformed
         //  This button will take user to create a playlist page when clicked 
         jComboBox2.removeAllItems();
+        createPlaylistNameField.setText("");
+        createPlaylistDescriptionTextArea.setText("");
         try {
             playLists = playCon.getPlaylist(user);
         } catch (Exception ex) {
