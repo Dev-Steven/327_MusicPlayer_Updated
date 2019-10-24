@@ -107,9 +107,9 @@ public class UserController {
     
     public boolean logging_in(String email, String password, javax.swing.JPanel main, javax.swing.JPanel test, javax.swing.JScrollPane songListPane) 
     {
-        System.out.println("Entered Email: " + email);
-        System.out.println("Entered Password: " + password);
-        
+//        System.out.println("Entered Email: " + email);
+//        System.out.println("Entered Password: " + password);
+//        
         //  reading file
         reader("accounts.json");
         
@@ -120,13 +120,13 @@ public class UserController {
             JSONObject object = new Gson().fromJson(new Gson().toJson(((LinkedTreeMap<String, Object>) account)), JSONObject.class);
             
             String getEmail = (String)object.get("email");
-            System.out.println("Email: " + getEmail);
+//            System.out.println("Email: " + getEmail);
             String getPassword = (String)object.get("_password");
-            System.out.println("Password: " + getPassword);
+//            System.out.println("Password: " + getPassword);
             
             if(email.equals(getEmail) && password.equals(getPassword))
             {
-                System.out.println("Niiiicee!");
+//                System.out.println("Niiiicee!");
                 success = true;
 
                 Gson gson2 = new Gson();

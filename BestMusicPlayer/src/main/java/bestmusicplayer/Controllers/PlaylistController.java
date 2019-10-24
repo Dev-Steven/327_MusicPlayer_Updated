@@ -18,6 +18,8 @@ import javax.swing.JOptionPane;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import java.util.Iterator; 
+import java.util.Map; 
 
 /**
  *
@@ -72,7 +74,7 @@ public class PlaylistController {
             System.out.print("playlist name isn't empty, check passed");
             
             reader("playlists.json");
-
+            
             Playlist playlist = new Playlist(user, playlistName, playlistDescription, songs);
 
             playlistList.add(playlist);
@@ -90,14 +92,27 @@ public class PlaylistController {
         }
     }
     
-    public ArrayList<String> getPlaylist(User user)
+    public ArrayList<String> getPlaylist(User user) throws Exception
     {   
         reader("playlists.json");
-        playLists.addAll(playlistList);
-        for(int i = 0; i < playLists.size(); i++)
+
+        Iterator itr  = playlistList.iterator();
+        Iterator<Map.Entry> itr1;
+        
+        while(itr.hasNext())
         {
-            System.out.println(playLists.get(i));
+            itr1 = ((Map) itr.next()).entrySet().iterator();
+            while (itr1.hasNext()) { 
+                Map.Entry pair = itr1.next();
+                if(pair.getKey().equals("playListName"))
+                {
+//                    System.out.println("found name: " + pair.getValue());
+                    playLists.add((String)pair.getValue());
+                } 
+            }
+
         }
+
         return playLists;
     }
     

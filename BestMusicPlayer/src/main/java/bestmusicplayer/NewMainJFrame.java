@@ -10,6 +10,8 @@ import bestmusicplayer.Views.*;
 import bestmusicplayer.Controllers.*;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JComboBox;
 
 
@@ -603,7 +605,12 @@ public class NewMainJFrame extends javax.swing.JFrame {
     private void viewCreatePlaylistButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewCreatePlaylistButtonActionPerformed
         //  This button will take user to create a playlist page when clicked 
         jComboBox2.removeAllItems();
-        playLists = playCon.getPlaylist(user);
+        try {
+            playLists = playCon.getPlaylist(user);
+        } catch (Exception ex) {
+            Logger.getLogger(NewMainJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         for(int i = 0; i < playLists.size(); i++)
         {
             jComboBox2.addItem(playLists.get(i));
