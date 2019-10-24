@@ -1,3 +1,5 @@
+package server;
+
 /**
 * The Proxy implements ProxyInterface class. The class is incomplete 
 * 

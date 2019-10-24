@@ -1,3 +1,5 @@
+package server;
+
 /**
 * SongDispatcher is the main responsable for obtaining the songs 
 *
