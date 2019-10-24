@@ -28,6 +28,7 @@ import java.util.Map;
 public class PlaylistController {
     
     boolean playlistCreated = false;
+    boolean playListDeleted = false;
      
     JSONObject playlistDetails = new JSONObject();
     JSONObject playlistObject = new JSONObject();
@@ -94,7 +95,10 @@ public class PlaylistController {
     
     public ArrayList<String> getPlaylist(User user) throws Exception
     {   
+        //clears previous playLists array
+        playLists = new ArrayList<>();
         reader("playlists.json");
+        
 
         Iterator itr  = playlistList.iterator();
         Iterator<Map.Entry> itr1;
@@ -104,6 +108,7 @@ public class PlaylistController {
             itr1 = ((Map) itr.next()).entrySet().iterator();
             while (itr1.hasNext()) { 
                 Map.Entry pair = itr1.next();
+                
                 if(pair.getKey().equals("playListName"))
                 {
 //                    System.out.println("found name: " + pair.getValue());
@@ -116,5 +121,30 @@ public class PlaylistController {
         return playLists;
     }
     
-    
+    public boolean DeletePlayList(String toDelete) throws Exception
+    {
+        reader("playlists.json");
+        
+        Iterator itr  = playlistList.iterator();
+        Iterator<Map.Entry> itr1;
+        
+        while(itr.hasNext())
+        {
+            itr1 = ((Map) itr.next()).entrySet().iterator();
+            while (itr1.hasNext()) { 
+                Map.Entry pair = itr1.next();
+                
+                if(pair.getKey().equals("playListName") && pair.getValue().equals(toDelete))
+                {
+                    itr.remove();
+                    writer("playlists.json", playlistList);             
+                    playListDeleted = true;
+                    return playListDeleted;
+                } 
+            }
+        }
+        
+        return playListDeleted;
+            
+        }
 }

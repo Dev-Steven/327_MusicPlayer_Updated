@@ -6,21 +6,6 @@
   },
   {
     "owner": "",
-    "playListName": "hello",
-    "playListDescription": "123"
-  },
-  {
-    "owner": "",
-    "playListName": "yoo",
-    "playListDescription": "testing"
-  },
-  {
-    "owner": "",
-    "playListName": "waddup",
-    "playListDescription": "sup."
-  },
-  {
-    "owner": "",
     "playListName": "yooo",
     "playListDescription": "working?"
   },
@@ -44,6 +29,12 @@
     "owner": "juan",
     "playListName": "heoll",
     "playListDescription": "fkmf",
+    "songList": []
+  },
+  {
+    "owner": "email",
+    "playListName": "Siickkk",
+    "playListDescription": "This is so dopeee",
     "songList": []
   }
 ]

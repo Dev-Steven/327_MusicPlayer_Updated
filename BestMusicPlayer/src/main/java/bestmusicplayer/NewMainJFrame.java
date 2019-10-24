@@ -36,6 +36,7 @@ public class NewMainJFrame extends javax.swing.JFrame {
     
     String createPlaylistName = "";
     String createPlaylistDescription = "";
+    String deletePlaylist = "";
    
     
     Mp3 player;    
@@ -657,7 +658,20 @@ public class NewMainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_addToPlaylistActionPerformed
 
     private void DeletePlaylistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeletePlaylistActionPerformed
-        // TODO add your handling code here:
+        deletePlaylist = (String) jComboBox2.getSelectedItem();
+        
+        try {
+            if(playCon.DeletePlayList(deletePlaylist))
+            {
+                MainView.view_homePage(main, mainView);
+            }
+            else
+            {
+                System.out.print("Could not delete playlist");
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(NewMainJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_DeletePlaylistActionPerformed
 
     private void EditPlaylistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditPlaylistActionPerformed

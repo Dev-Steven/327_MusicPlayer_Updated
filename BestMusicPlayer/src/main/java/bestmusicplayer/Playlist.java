@@ -26,7 +26,7 @@ public class Playlist {
         this.songList = songs;
     }
     
-    public void deletePlaylist() {owner = null;}
+    public void deletePlaylist(String playListToDelete) {owner = null;}
     
     public void addSong(String song) 
     {
